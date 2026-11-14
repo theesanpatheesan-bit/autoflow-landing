@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AutoFlow – Smart Service Center</title>
+  <meta name="description" content="AutoFlow connects vehicle owners, mechanics, managers and center owners on one live platform. Book a slot, track every stage in real time and approve extra work in one tap. Join the waitlist.">
+  <meta name="theme-color" content="#090A0F">
+  <link rel="canonical" href="https://autoflow.lk/">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AutoFlow – Every vehicle. Every stage. One live flow.">
+  <meta property="og:description" content="The all-in-one service center platform for Sri Lanka: booking, live tracking, job workflow engine and dashboards.">
+  <meta property="og:image" content="https://autoflow.lk/assets/img/og-image.png">
+  <meta property="og:url" content="https://autoflow.lk/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AutoFlow – Smart Service Center Platform">
+  <meta name="twitter:description" content="Book, track and approve vehicle service work live. Join the AutoFlow waitlist.">
+  <meta name="twitter:image" content="https://autoflow.lk/assets/img/og-image.png">
+
+  <!-- Icons -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="js/theme.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"AutoFlow","applicationCategory":"BusinessApplication","operatingSystem":"Android, iOS, Web","description":"Service center platform for Sri Lanka with customer app, staff, manager and admin dashboards and a job workflow engine."}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Global 3D golden universe – one scene for the whole page -->
+  <div class="universe" aria-hidden="true">
+    <div class="universe__atmosphere"></div>
+    <div class="universe__grid"></div>
+    <canvas id="universe-canvas" class="universe__canvas"></canvas>
+    <div class="universe__vignette"></div>
+  </div>
+
+  <!-- SVG icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-car" viewBox="0 0 24 24"><path d="M5 11l1.5-4.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11"/><rect x="3" y="11" width="18" height="6" rx="2"/><path d="M7.5 14h.01M16.5 14h.01M6 17v2M18 17v2"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+      <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v.01M14 21h3M21 17v4"/></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8z"/><path d="M10.3 20a2 2 0 0 0 3.4 0"/></symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
+      <symbol id="i-wifioff" viewBox="0 0 24 24"><path d="M2 8.8a15 15 0 0 1 4-2.5M22 8.8a15 15 0 0 0-9-3.7M5 12.9a10 10 0 0 1 5-2.8M19 12.9a10 10 0 0 0-2.4-1.8M8.5 16.4a5 5 0 0 1 7 0M12 20h.01M3 3l18 18"/></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14c2.8 0 4.5 1.8 4.5 4.5"/></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+      <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0z"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+      <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V5l8-2v18M12 9h8v12M4 21h16M8 8v.01M8 12v.01M8 16v.01M16 13v.01M16 17v.01"/></symbol>
+      <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14 6a4 4 0 0 0 5.5 5.2L10 20.7a2 2 0 0 1-3-3l9.5-9.5A4 4 0 0 0 14 6z"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5 8.5 8.5 0 1 0 20.5 15.5z"/></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+      <symbol id="i-money" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 12h.01M18 12h.01"/></symbol>
+      <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8.5c0-.3.2-.5.5-.5z"/></symbol>
+      <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
+      <symbol id="i-linkedin" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v6M8 8v.01M12 17v-6M12 13c0-2 4-3 4 0v4"/></symbol>
+      <symbol id="i-youtube" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="M10 9.5v5l4.5-2.5z"/></symbol>
+      <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4 1.3-4-2-6-2.5M15 21v-3.2a2.8 2.8 0 0 0-.8-2.2c2.7-.3 5.5-1.3 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.3 4.3 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.600 11.600 0 0 0-6 0C6.500 2.800 5.500 3.100 5.500 3.100a4.300 4.300 0 0 0-.1 3.200A4.600 4.600 0 0 0 4 9.500c0 4.600 2.800 5.700 5.500 6A2.800 2.800 0 0 0 8.700 17.800V21"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <!-- ============ 01 NAVIGATION ============ -->
+  <header class="nav" id="top">
+    <div class="container nav__inner">
+      <a href="#home" class="brand" aria-label="AutoFlow – home">
+        <img src="assets/img/logo-icon-128.png" alt="AutoFlow logo" width="40" height="40">
+        <span class="brand__name">Auto<b>Flow</b></span>
+      </a>
+      <nav class="nav__links" id="nav-menu" aria-label="Primary">
+        <a href="#home" class="is-active">Home</a>
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#team">Our Team</a>
+        <a href="#contact">Contact</a>
+        <a href="#waitlist" class="btn btn--primary btn--sm nav__cta-mobile" data-cta="nav_mobile">Join Waitlist</a>
+        <button class="theme-toggle theme-toggle--menu" type="button" aria-label="Switch to light theme" aria-pressed="false">
+          <svg class="ic theme-icon theme-icon--sun" aria-hidden="true"><use href="#i-sun"/></svg>
+          <svg class="ic theme-icon theme-icon--moon" aria-hidden="true"><use href="#i-moon"/></svg>
+          <span class="theme-toggle__label">Switch to light theme</span>
+        </button>
+      </nav>
+      <a href="#waitlist" class="btn btn--primary btn--sm nav__cta" data-cta="nav">Join Waitlist</a>
+      <button class="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false">
+        <svg class="ic theme-icon theme-icon--sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        <svg class="ic theme-icon theme-icon--moon" aria-hidden="true"><use href="#i-moon"/></svg>
+      </button>
+      <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+        <svg class="ic"><use href="#i-menu"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+  <!-- ============ 02 HERO ============ -->
+  <section class="hero" id="home" aria-labelledby="hero-title">
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <div class="hero__badge reveal">
+          <img src="assets/img/logo-icon-128.png" alt="" width="28" height="28">
+          <span><b>AutoFlow</b> · Service Center Platform · Sri Lanka</span>
+        </div>
+        <h1 id="hero-title" class="reveal" style="--d:.08s">Every vehicle. Every stage. <span class="grad">One live flow.</span></h1>
+        <p class="hero__lead reveal" style="--d:.16s">AutoFlow runs your whole service center on one platform. Customers book and track in real time, staff get the next job automatically, and managers see the entire floor live &ndash; in Sinhala, Tamil and English.</p>
+        <div class="hero__ctas reveal" style="--d:.24s">
+          <a href="#waitlist" class="btn btn--primary btn--lg" data-cta="hero_primary">Join the Waitlist <svg class="ic"><use href="#i-arrow"/></svg></a>
+          <a href="#showcase" class="btn btn--ghost btn--lg" data-cta="hero_secondary">Explore the Prototype</a>
+        </div>
+        <ul class="hero__stats reveal" style="--d:.32s">
+          <li><strong>4</strong><span>apps, one backend</span></li>
+          <li><strong>7</strong><span>automated job stages</span></li>
+          <li><strong>3</strong><span>languages built in</span></li>
+        </ul>
+      </div>
+
+      <div class="hero__visual reveal" style="--d:.2s">
+        <div class="hero__stage" data-parallax>
+          <div class="phone phone--hero">
+            <div class="phone__notch"></div>
+            <div class="phone__screen" data-screen="customer-tracking">
+              <div class="ui ui--track">
+                <div class="ui__top"><span class="ui__back">&#8592;</span><b>Live job tracking</b><span class="pill pill--live"><i></i>Live</span></div>
+                <div class="veh">
+                  <div class="veh__icon"><svg class="ic"><use href="#i-car"/></svg></div>
+                  <div><b>CAB-1234</b><small>Toyota Aqua · Hybrid</small></div>
+                  <span class="veh__eta">ETA<br><b>42 min</b></span>
+                </div>
+                <ol class="stepper">
+                  <li class="done"><i><svg class="ic"><use href="#i-check"/></svg></i><div><b>Checked in</b><small>Entry photos taken</small></div></li>
+                  <li class="done"><i><svg class="ic"><use href="#i-check"/></svg></i><div><b>Waterwash</b><small>Completed · 18 min</small></div></li>
+                  <li class="now"><i></i><div><b>Scanning</b><small>In progress · Nuwan</small></div></li>
+                  <li><i></i><div><b>Engine repair</b><small>Up next</small></div></li>
+                  <li><i></i><div><b>Quality check</b><small>Manager sign-off</small></div></li>
+                  <li><i></i><div><b>Ready for pickup</b><small>We will notify you</small></div></li>
+                </ol>
+                <div class="ui__bar"><div class="ui__bar-fill" style="width:46%"></div></div>
+              </div>
+            </div>
+          </div>
+          <canvas id="hero-arrow" class="hero__arrow" aria-hidden="true"></canvas>
+          <div class="chip chip--a glass"><svg class="ic"><use href="#i-bolt"/></svg><div><b>Auto-assigned</b><small>Next vehicle → Nuwan</small></div></div>
+          <div class="chip chip--b glass"><svg class="ic"><use href="#i-bell"/></svg><div><b>Approval needed</b><small>Brake pads · Rs. 8,500</small></div></div>
+          <div class="chip chip--c glass"><svg class="ic"><use href="#i-check"/></svg><div><b>Stage closed</b><small>Waterwash → Scanning</small></div></div>
+        </div>
+      </div>
+    </div>
+    <a href="#about" class="hero__scroll" aria-label="Scroll to About section"><span></span></a>
+  </section>
+
+  <!-- marquee -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Job Workflow Engine</span><i></i><span>Live Tracking</span><i></i><span>Multi-tenant Platform</span><i></i><span>සිංහල · தமிழ் · English</span><i></i><span>LankaQR Ready</span><i></i><span>Offline-first Staff App</span><i></i><span>Digital Service Book</span><i></i>
+      <span>Job Workflow Engine</span><i></i><span>Live Tracking</span><i></i><span>Multi-tenant Platform</span><i></i><span>සිංහල · தமிழ் · English</span><i></i><span>LankaQR Ready</span><i></i><span>Offline-first Staff App</span><i></i><span>Digital Service Book</span><i></i>
+    </div>
+  </div>
+
+  <div id="about">
+  <!-- ============ 03 PROBLEM ============ -->
+  <section class="section" id="problem" data-glow="edge" aria-labelledby="problem-title">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="eyebrow">The problem</p>
+        <h2 id="problem-title">Vehicle service is still run on <span class="grad-red">paper, phone calls and guesswork</span></h2>
+        <p class="lead">Most service centers in Sri Lanka are small and busy. Without a shared system, everyone &ndash; from the vehicle owner to the center owner &ndash; pays the price.</p>
+      </header>
+
+      <div class="grid grid--3 problem-grid">
+        <article class="card tilt reveal" data-tilt>
+          <span class="card__tag">Vehicle owners</span>
+          <div class="card__icon card__icon--red"><svg class="ic"><use href="#i-clock"/></svg></div>
+          <h3>"Is my vehicle ready yet?"</h3>
+          <p>Customers wait, call and wait again. There is no live status, no queue position and no idea how long the job will really take.</p>
+        </article>
+        <article class="card tilt reveal" style="--d:.08s" data-tilt>
+          <span class="card__tag">Vehicle owners</span>
+          <div class="card__icon card__icon--red"><svg class="ic"><use href="#i-money"/></svg></div>
+          <h3>Surprise extra charges</h3>
+          <p>Extra faults are found mid-job and added to the bill by phone &ndash; with no photo, no written consent and plenty of room for disputes.</p>
+        </article>
+        <article class="card tilt reveal" style="--d:.16s" data-tilt>
+          <span class="card__tag">Staff &amp; managers</span>
+          <div class="card__icon card__icon--red"><svg class="ic"><use href="#i-users"/></svg></div>
+          <h3>Manual job hand-offs</h3>
+          <p>Someone has to shout, write or walk a job card from washing to scanning to repair. Vehicles sit idle while staff wait to be told what is next.</p>
+        </article>
+        <article class="card tilt reveal" data-tilt>
+          <span class="card__tag">Managers</span>
+          <div class="card__icon card__icon--red"><svg class="ic"><use href="#i-eye"/></svg></div>
+          <h3>No view of the floor</h3>
+          <p>Delays, overloaded technicians and unanswered approvals are noticed only when a customer complains.</p>
+        </article>
+        <article class="card tilt reveal" style="--d:.08s" data-tilt>
+          <span class="card__tag">Vehicle owners</span>
+          <div class="card__icon card__icon--red"><svg class="ic"><use href="#i-file"/></svg></div>
+          <h3>Lost papers, missed expiries</h3>
+          <p>Revenue licence, insurance and emission test papers live in glove boxes. Renewal dates are forgotten and service history disappears.</p>
+        </article>
+        <article class="card tilt reveal" style="--d:.16s" data-tilt>
+          <span class="card__tag">Center owners</span>
+          <div class="card__icon card__icon--red"><svg class="ic"><use href="#i-chart"/></svg></div>
+          <h3>Numbers in notebooks</h3>
+          <p>Revenue, job times and staff performance are scattered across books and chat threads, so growth decisions are made on instinct.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 SOLUTION ============ -->
+  <section class="section section--alt" id="solution" data-glow="gold" aria-labelledby="solution-title">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="eyebrow">Our solution</p>
+        <h2 id="solution-title">One platform. <span class="grad">Four apps.</span> A workflow that runs itself.</h2>
+        <p class="lead">AutoFlow gives every person in the service journey their own app, all powered by a shared backend and a job workflow engine that moves each vehicle through wash, scan and repair automatically.</p>
+      </header>
+
+      <div class="apps-grid">
+        <article class="app-card reveal" data-tilt>
+          <div class="app-card__icon"><svg class="ic"><use href="#i-phone"/></svg></div>
+          <h3>Customer app</h3>
+          <p>Find the right center, book a slot, track the job live and approve extra work in one tap.</p>
+          <small>Mobile · Flutter</small>
+        </article>
+        <article class="app-card reveal" style="--d:.07s" data-tilt>
+          <div class="app-card__icon"><svg class="ic"><use href="#i-wrench"/></svg></div>
+          <h3>Staff dashboard</h3>
+          <p>Log in and the job is already open. Follow the checklist, report faults, close &ndash; the next vehicle appears.</p>
+          <small>Tablet · Phone · Browser</small>
+        </article>
+        <article class="app-card reveal" style="--d:.14s" data-tilt>
+          <div class="app-card__icon"><svg class="ic"><use href="#i-eye"/></svg></div>
+          <h3>Manager dashboard</h3>
+          <p>One live board for every vehicle, stage and staff member, with alerts before customers notice problems.</p>
+          <small>PC · Tablet</small>
+        </article>
+        <article class="app-card reveal" style="--d:.21s" data-tilt>
+          <div class="app-card__icon"><svg class="ic"><use href="#i-chart"/></svg></div>
+          <h3>Admin dashboard</h3>
+          <p>Set up services, prices, staff and branches, and read revenue and performance from any browser.</p>
+          <small>Browser</small>
+        </article>
+      </div>
+
+      <div class="compare reveal">
+        <div class="compare__col compare__col--before">
+          <h3><span class="dot dot--red"></span>Today</h3>
+          <ul>
+            <li><svg class="ic"><use href="#i-x"/></svg>Jobs assigned by shouting or paper cards</li>
+            <li><svg class="ic"><use href="#i-x"/></svg>Customers phone in for status</li>
+            <li><svg class="ic"><use href="#i-x"/></svg>Extra work approved verbally</li>
+            <li><svg class="ic"><use href="#i-x"/></svg>Documents and history scattered</li>
+          </ul>
+        </div>
+        <div class="compare__arrow" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></div>
+        <div class="compare__col compare__col--after">
+          <h3><span class="dot dot--gold"></span>With AutoFlow</h3>
+          <ul>
+            <li><svg class="ic"><use href="#i-check"/></svg>Engine hands each vehicle to the next stage automatically</li>
+            <li><svg class="ic"><use href="#i-check"/></svg>Live stage-by-stage tracking on the customer's phone</li>
+            <li><svg class="ic"><use href="#i-check"/></svg>Photo, price and one-tap, time-stamped consent</li>
+            <li><svg class="ic"><use href="#i-check"/></svg>Document vault and full digital service history</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div><!-- /#about -->
+
+  <!-- ============ 05 KEY FEATURES ============ -->
+  <section class="section" id="features" data-glow="cards" aria-labelledby="features-title">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="eyebrow">Key features</p>
+        <h2 id="features-title">Built around the <span class="grad">job workflow engine</span></h2>
+        <p class="lead">Everything a modern service center needs, designed in our high-fidelity prototype.</p>
+      </header>
+
+      <div class="bento">
+        <!-- Workflow engine -->
+        <article class="bento__item bento--wide glass reveal" data-tilt>
+          <div class="bento__text">
+            <div class="card__icon"><svg class="ic"><use href="#i-layers"/></svg></div>
+            <h3>Job workflow engine</h3>
+            <p>Chosen services become ordered stages by staff category. When one stage closes, the vehicle moves to the next queue and the least-loaded available person gets the job &ndash; no manual hand-off.</p>
+          </div>
+          <div class="mini mini--flow" aria-hidden="true">
+            <span class="node done">Wash</span><b></b><span class="node now">Scan</span><b></b><span class="node">Repair</span><b></b><span class="node">QC</span>
+          </div>
+        </article>
+
+        <!-- Map -->
+        <article class="bento__item glass reveal" style="--d:.06s" data-tilt>
+          <div class="mini mini--map" aria-hidden="true">
+            <svg viewBox="0 0 300 150" preserveAspectRatio="xMidYMid slice">
+              <path class="roads" d="M-10 110 C60 90 90 40 160 55 S260 20 320 30M40 -10 C60 50 70 90 120 160M170 160 C180 110 210 90 240 -10M-10 60 L320 100"/>
+              <circle class="pin-pulse" cx="95" cy="62" r="6"/><circle class="pin-pulse p2" cx="205" cy="48" r="6"/><circle class="pin-pulse p3" cx="160" cy="105" r="6"/>
+              <circle class="pin" cx="95" cy="62" r="5"/><circle class="pin" cx="205" cy="48" r="5"/><circle class="pin pin--gold" cx="160" cy="105" r="5"/>
+              <circle class="me" cx="140" cy="80" r="4"/>
+            </svg>
+          </div>
+          <div class="card__icon"><svg class="ic"><use href="#i-pin"/></svg></div>
+          <h3>Nearby centers &amp; comparison</h3>
+          <p>Map and list with distance, price, live wait time and rating &ndash; filtered to centers that offer every service you need.</p>
+        </article>
+
+        <!-- Booking -->
+        <article class="bento__item glass reveal" style="--d:.1s" data-tilt>
+          <div class="mini mini--qr" aria-hidden="true">
+            <svg viewBox="0 0 64 64"><g class="qr"></g></svg>
+            <div><b>Token #A-2041</b><small>Tomorrow · 09:30</small></div>
+          </div>
+          <div class="card__icon"><svg class="ic"><use href="#i-qr"/></svg></div>
+          <h3>Slot booking &amp; QR token</h3>
+          <p>Book by app, phone or at the counter. Check in by scanning a QR code or the number plate &ndash; no typing.</p>
+        </article>
+
+        <!-- Approval -->
+        <article class="bento__item glass reveal" data-tilt>
+          <div class="mini mini--approve" aria-hidden="true">
+            <div class="mini__photo"><svg class="ic"><use href="#i-camera"/></svg></div>
+            <div><b>Brake pads worn</b><small>Estimate Rs. 8,500</small></div>
+            <div class="mini__btns"><span class="b-no">Decline</span><span class="b-yes">Approve</span></div>
+          </div>
+          <div class="card__icon"><svg class="ic"><use href="#i-camera"/></svg></div>
+          <h3>Extra-work approval</h3>
+          <p>Staff report faults with photo, note and estimate. Only what the customer approves is added to the job and the bill.</p>
+        </article>
+
+        <!-- Tracking -->
+        <article class="bento__item glass reveal" style="--d:.06s" data-tilt>
+          <div class="card__icon"><svg class="ic"><use href="#i-bell"/></svg></div>
+          <h3>Live tracking &amp; alerts</h3>
+          <p>Washing, Scanning, Repair, Ready &ndash; real-time status, queue position and a "your turn is near" alert over push, SMS and WhatsApp.</p>
+          <div class="mini mini--bars" aria-hidden="true"><i style="--h:40%"></i><i style="--h:65%"></i><i style="--h:85%"></i><i style="--h:100%"></i></div>
+        </article>
+
+        <!-- Floor board -->
+        <article class="bento__item bento--wide glass reveal" style="--d:.1s" data-tilt>
+          <div class="bento__text">
+            <div class="card__icon"><svg class="ic"><use href="#i-eye"/></svg></div>
+            <h3>Live floor board</h3>
+            <p>A kanban of every vehicle by stage &ndash; Waiting, Wash, Scan, Repair, QC, Ready &ndash; with the assigned staff, elapsed time and automatic delay alerts.</p>
+          </div>
+          <div class="mini mini--kanban" aria-hidden="true">
+            <div><em>Wash</em><i></i><i></i></div><div><em>Scan</em><i class="hot"></i></div><div><em>Repair</em><i></i><i class="hot"></i><i></i></div><div><em>Ready</em><i class="ok"></i></div>
+          </div>
+        </article>
+
+        <article class="bento__item glass reveal" data-tilt>
+          <div class="card__icon"><svg class="ic"><use href="#i-file"/></svg></div>
+          <h3>Document vault &amp; service book</h3>
+          <p>Revenue licence, insurance, emission test and invoices per vehicle, with expiry reminders and a shareable digital service history.</p>
+        </article>
+
+        <article class="bento__item glass reveal" style="--d:.06s" data-tilt>
+          <div class="card__icon"><svg class="ic"><use href="#i-chart"/></svg></div>
+          <h3>Analytics &amp; branches</h3>
+          <p>Revenue by service, staff and branch, exportable to PDF and Excel, all under one owner login.</p>
+        </article>
+
+        <article class="bento__item glass reveal" style="--d:.1s" data-tilt>
+          <div class="card__icon"><svg class="ic"><use href="#i-globe"/></svg></div>
+          <h3>Sinhala · Tamil · English</h3>
+          <p>Every app and notification in three languages, with +94 phone validation and LKR pricing built in.</p>
+          <div class="langs" aria-hidden="true"><span>සිං</span><span>த</span><span>En</span></div>
+        </article>
+
+        <article class="bento__item glass reveal" data-tilt>
+          <div class="card__icon"><svg class="ic"><use href="#i-wifioff"/></svg></div>
+          <h3>Offline-first staff app</h3>
+          <p>Power or internet cut? Steps and photos keep working and sync automatically when the connection returns.</p>
+        </article>
+
+        <article class="bento__item glass reveal" style="--d:.06s" data-tilt>
+          <div class="card__icon"><svg class="ic"><use href="#i-shield"/></svg></div>
+          <h3>Secure multi-tenant core</h3>
+          <p>Role-based access and strict isolation &ndash; one center can never see another center's data.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06 HOW IT WORKS ============ -->
+  <section class="section section--alt" id="how-it-works" data-glow="soft" aria-labelledby="how-title">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="eyebrow">How it works</p>
+        <h2 id="how-title">From booking to <span class="grad">"ready for pickup"</span> in seven steps</h2>
+        <p class="lead">The engine does the hand-offs. People do the work.</p>
+      </header>
+
+      <div class="track reveal" aria-hidden="true">
+        <div class="track__rail"><span class="track__fill"></span></div>
+        <div class="track__nodes">
+          <span>Book</span><span>Check-in</span><span>Split</span><span>Work</span><span>Hand-off</span><span>Next</span><span>Ready</span>
+        </div>
+        <div class="track__car"><svg class="ic"><use href="#i-car"/></svg></div>
+      </div>
+
+      <ol class="timeline" id="timeline">
+        <li class="reveal"><span class="timeline__n">01</span><div class="timeline__body glass"><h3>Book</h3><p>From the app, by phone or at the counter. The system issues a booking token and reserves the slot.</p></div></li>
+        <li class="reveal"><span class="timeline__n">02</span><div class="timeline__body glass"><h3>Check in</h3><p>Reception scans the token, QR or number plate, takes entry photos and opens the job card.</p></div></li>
+        <li class="reveal"><span class="timeline__n">03</span><div class="timeline__body glass"><h3>Stage split</h3><p>Chosen services become ordered stages &ndash; for example Waterwash, then Scanning, then Engine repair.</p></div></li>
+        <li class="reveal"><span class="timeline__n">04</span><div class="timeline__body glass"><h3>Stage work</h3><p>The least-loaded available staff member in that category gets the job, with a step checklist and timer.</p></div></li>
+        <li class="reveal"><span class="timeline__n">05</span><div class="timeline__body glass"><h3>Stage close</h3><p>Closing a stage moves the vehicle to the next category's queue, and the customer sees the new status.</p></div></li>
+        <li class="reveal"><span class="timeline__n">06</span><div class="timeline__body glass"><h3>Next vehicle</h3><p>The moment staff close a job, the next vehicle in the slot queue is assigned to them.</p></div></li>
+        <li class="reveal"><span class="timeline__n">07</span><div class="timeline__body glass"><h3>Final close</h3><p>Extras are listed, the manager signs off quality, the invoice is generated and the customer is told the vehicle is ready.</p></div></li>
+      </ol>
+
+      <div class="edge reveal">
+        <h3>Built for the awkward cases too</h3>
+        <div class="edge__grid">
+          <div class="glass"><b>Extra fault mid-job</b><span>Customer gets photo + price; the item waits for approval.</span></div>
+          <div class="glass"><b>No reply from customer</b><span>After 30 min (configurable) the manager is alerted to call.</span></div>
+          <div class="glass"><b>Staff cannot finish</b><span>Pick a reason and a person; handover logged and manager notified.</span></div>
+          <div class="glass"><b>Customer no-show</b><span>Slot released after a grace period; customer notified.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07 PRODUCT SHOWCASE ============ -->
+  <section class="section" id="showcase" data-glow="soft" aria-labelledby="showcase-title">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="eyebrow">Product showcase</p>
+        <h2 id="showcase-title">Our <span class="grad">high-fidelity prototype</span>, screen by screen</h2>
+        <p class="lead">Explore the experience for every role. Sample data is used for illustration.</p>
+      </header>
+
+      <div class="tabs reveal" role="tablist" aria-label="Prototype apps">
+        <button role="tab" id="tab-customer" aria-controls="panel-customer" aria-selected="true">Customer app</button>
+        <button role="tab" id="tab-staff" aria-controls="panel-staff" aria-selected="false" tabindex="-1">Staff</button>
+        <button role="tab" id="tab-manager" aria-controls="panel-manager" aria-selected="false" tabindex="-1">Manager</button>
+        <button role="tab" id="tab-admin" aria-controls="panel-admin" aria-selected="false" tabindex="-1">Admin</button>
+      </div>
+
+      <!-- Customer -->
+      <div class="panel is-active" role="tabpanel" id="panel-customer" aria-labelledby="tab-customer">
+        <div class="phones">
+          <figure class="device-fig">
+            <div class="phone" data-tilt-soft>
+              <div class="phone__notch"></div>
+              <div class="phone__screen" data-screen="customer-search">
+                <div class="ui">
+                  <div class="ui__top"><b>Find a center</b><span class="pill">Colombo</span></div>
+                  <div class="search"><svg class="ic"><use href="#i-pin"/></svg>Wash · Scan · Engine repair</div>
+                  <div class="chips"><span class="on">Wash</span><span class="on">Scan</span><span>Repair</span><span>Hybrid</span></div>
+                  <div class="map-lg">
+                    <svg viewBox="0 0 300 170" preserveAspectRatio="xMidYMid slice"><path class="roads" d="M-10 120 C60 100 90 50 160 65 S260 30 320 40M40 -10 C60 60 70 100 120 180M170 180 C180 120 210 100 240 -10M-10 70 L320 110"/><circle class="pin-pulse" cx="90" cy="72" r="7"/><circle class="pin" cx="90" cy="72" r="5"/><circle class="pin" cx="210" cy="58" r="5"/><circle class="pin pin--gold" cx="165" cy="115" r="5"/><circle class="me" cx="140" cy="90" r="4"/></svg>
+                  </div>
+                  <div class="list-item"><div><b>Ceylon Auto Care</b><small>1.2 km · ★ 4.8 · Wait 15 min</small></div><span class="price">Rs. 4,500</span></div>
+                  <div class="list-item"><div><b>Metro Motor Works</b><small>2.9 km · ★ 4.6 · Wait 40 min</small></div><span class="price">Rs. 4,200</span></div>
+                </div>
+              </div>
+            </div>
+            <figcaption><b>Find &amp; compare</b>Nearby centers filtered by the services you need.</figcaption>
+          </figure>
+
+          <figure class="device-fig device-fig--mid">
+            <div class="phone" data-tilt-soft>
+              <div class="phone__notch"></div>
+              <div class="phone__screen" data-screen="customer-booking">
+                <div class="ui">
+                  <div class="ui__top"><span class="ui__back">&#8592;</span><b>Booking confirmed</b></div>
+                  <div class="ticket">
+                    <div class="ticket__qr"><svg viewBox="0 0 64 64"><g class="qr"></g></svg></div>
+                    <b>Token #A-2041</b>
+                    <small>Ceylon Auto Care · Tomorrow 09:30</small>
+                  </div>
+                  <div class="kv"><span>Vehicle</span><b>CAB-1234</b></div>
+                  <div class="kv"><span>Services</span><b>Wash · Scan</b></div>
+                  <div class="kv"><span>Estimate</span><b>Rs. 4,500</b></div>
+                  <div class="ui__btn ui__btn--gold">Add to calendar</div>
+                  <div class="ui__btn ui__btn--line">Reschedule</div>
+                </div>
+              </div>
+            </div>
+            <figcaption><b>Book in two taps</b>A QR token that speeds up check-in.</figcaption>
+          </figure>
+
+          <figure class="device-fig">
+            <div class="phone" data-tilt-soft>
+              <div class="phone__notch"></div>
+              <div class="phone__screen" data-screen="customer-approval">
+                <div class="ui">
+                  <div class="ui__top"><span class="ui__back">&#8592;</span><b>Approve extra work</b></div>
+                  <div class="photo"><svg class="ic"><use href="#i-camera"/></svg><span>Photo from technician</span></div>
+                  <h4 class="ui__h">Front brake pads worn</h4>
+                  <p class="ui__p">Pads are below the safe limit. Replacement recommended today.</p>
+                  <div class="kv"><span>Estimate</span><b class="gold">Rs. 8,500</b></div>
+                  <div class="ui__row"><div class="ui__btn ui__btn--line">Decline</div><div class="ui__btn ui__btn--red">Approve</div></div>
+                  <small class="ui__note">Your approval is recorded with a timestamp.</small>
+                </div>
+              </div>
+            </div>
+            <figcaption><b>Approve with confidence</b>Photo, reason and price &ndash; one tap.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Staff -->
+      <div class="panel" role="tabpanel" id="panel-staff" aria-labelledby="tab-staff" hidden>
+        <figure class="device-fig device-fig--wide">
+          <div class="tablet" data-tilt-soft>
+            <div class="tablet__screen" data-screen="staff-job">
+              <div class="ui ui--wide">
+                <div class="ui__top"><div><small>Job #1042 · Scanning stage</small><b>Toyota Aqua · CAB-1234</b></div><span class="timer">12:48</span></div>
+                <div class="cols">
+                  <div class="col">
+                    <h5>Checklist</h5>
+                    <ul class="check">
+                      <li class="done"><i></i>Connect diagnostic scanner</li>
+                      <li class="done"><i></i>Read fault codes</li>
+                      <li class="done"><i></i>Check battery health</li>
+                      <li class="now"><i></i>Attach scan report</li>
+                      <li><i></i>Notes for next stage</li>
+                    </ul>
+                  </div>
+                  <div class="col">
+                    <h5>Customer &amp; vehicle</h5>
+                    <div class="kv"><span>Services</span><b>Wash · Scan · Repair</b></div>
+                    <div class="kv"><span>Fuel</span><b>Hybrid</b></div>
+                    <div class="kv"><span>Mileage</span><b>84,200 km</b></div>
+                    <div class="kv"><span>Last visit</span><b>Aug 2026</b></div>
+                    <div class="ui__row"><div class="ui__btn ui__btn--line">Report extra fault</div><div class="ui__btn ui__btn--gold">Close stage</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption><b>Staff job screen</b>The job is already open, steps cannot be skipped and closing pulls in the next vehicle.</figcaption>
+        </figure>
+      </div>
+
+      <!-- Manager -->
+      <div class="panel" role="tabpanel" id="panel-manager" aria-labelledby="tab-manager" hidden>
+        <figure class="device-fig device-fig--wide">
+          <div class="laptop" data-tilt-soft>
+            <div class="laptop__screen" data-screen="manager-board">
+              <div class="ui ui--wide">
+                <div class="ui__top"><b>Live floor board</b><div><span class="pill pill--live"><i></i>Live</span><span class="pill pill--warn">1 delay</span></div></div>
+                <div class="kan">
+                  <div class="kan__col"><em>Waiting <b>3</b></em><div class="kcard"><b>CAC-8841</b><small>Wash · Scan</small></div><div class="kcard"><b>KP-4410</b><small>Oil change</small></div></div>
+                  <div class="kan__col"><em>Wash <b>2</b></em><div class="kcard"><b>CAB-1234</b><small>Sumith · 06:12</small></div><div class="kcard"><b>WP-2290</b><small>Kasun · 11:40</small></div></div>
+                  <div class="kan__col"><em>Scan <b>1</b></em><div class="kcard now"><b>BCC-7305</b><small>Nuwan · 12:48</small></div></div>
+                  <div class="kan__col"><em>Repair <b>2</b></em><div class="kcard warn"><b>CBA-5521</b><small>Delay · 1h 12m</small></div><div class="kcard"><b>NW-9012</b><small>Ruwan · 34:20</small></div></div>
+                  <div class="kan__col"><em>Ready <b>1</b></em><div class="kcard ok"><b>CAD-3318</b><small>Customer notified</small></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption><b>Manager floor board</b>Every vehicle, stage and staff member in one live view, with delay alerts.</figcaption>
+        </figure>
+      </div>
+
+      <!-- Admin -->
+      <div class="panel" role="tabpanel" id="panel-admin" aria-labelledby="tab-admin" hidden>
+        <figure class="device-fig device-fig--wide">
+          <div class="laptop" data-tilt-soft>
+            <div class="laptop__screen" data-screen="admin-analytics">
+              <div class="ui ui--wide">
+                <div class="ui__top"><b>Analytics · This week</b><span class="pill">All branches</span></div>
+                <div class="kpis">
+                  <div><small>Bookings</small><b>248</b></div>
+                  <div><small>Jobs done</small><b>231</b></div>
+                  <div><small>Avg. job time</small><b>1h 42m</b></div>
+                  <div><small>Revenue (LKR)</small><b class="gold">1.86M</b></div>
+                </div>
+                <div class="cols">
+                  <div class="col col--chart">
+                    <h5>Revenue by day</h5>
+                    <div class="bars"><i style="--h:45%"><u>M</u></i><i style="--h:62%"><u>T</u></i><i style="--h:55%"><u>W</u></i><i style="--h:78%"><u>T</u></i><i style="--h:92%"><u>F</u></i><i style="--h:100%"><u>S</u></i><i style="--h:38%"><u>S</u></i></div>
+                  </div>
+                  <div class="col">
+                    <h5>Top services</h5>
+                    <div class="rowbar"><span>Full wash</span><div><i style="width:88%"></i></div></div>
+                    <div class="rowbar"><span>Diagnostic scan</span><div><i style="width:64%"></i></div></div>
+                    <div class="rowbar"><span>Oil change</span><div><i style="width:52%"></i></div></div>
+                    <div class="rowbar"><span>Engine repair</span><div><i style="width:31%"></i></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption><b>Admin analytics</b>Revenue, job time and performance by day, week and month. Sample data shown.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 08 WHY CHOOSE US ============ -->
+  <section class="section section--alt" id="why" data-glow="gold" aria-labelledby="why-title">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="eyebrow">Why choose us</p>
+        <h2 id="why-title">More than a booking app. A <span class="grad">workflow engine</span> for your whole floor.</h2>
+      </header>
+
+      <div class="why-grid">
+        <article class="why-card glass reveal" data-tilt><span class="why-card__n">01</span><h3>Automatic stage hand-offs</h3><p>No assigning by hand. Vehicles flow between categories and staff get the next job the moment they close one.</p></article>
+        <article class="why-card glass reveal" style="--d:.06s" data-tilt><span class="why-card__n">02</span><h3>Evidence, not arguments</h3><p>Entry photos, fault photos and timestamped customer consent protect both the center and the customer.</p></article>
+        <article class="why-card glass reveal" style="--d:.12s" data-tilt><span class="why-card__n">03</span><h3>Made for Sri Lanka</h3><p>Sinhala, Tamil and English, local number plates, +94 numbers, LKR, LankaQR and tolerance for weak connectivity.</p></article>
+        <article class="why-card glass reveal" style="--d:.18s" data-tilt><span class="why-card__n">04</span><h3>Live in under an hour</h3><p>Preset service templates let a small garage set up quickly, with short Sinhala and Tamil training videos.</p></article>
+      </div>
+
+      <div class="table-wrap reveal">
+        <table class="cmp">
+          <caption class="sr-only">Comparison of AutoFlow with paper and phone calls and with generic booking apps</caption>
+          <thead><tr><th scope="col">Capability</th><th scope="col" class="cmp__us">AutoFlow</th><th scope="col">Paper &amp; phone</th><th scope="col">Generic booking apps</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Automatic stage hand-off between staff</th><td class="cmp__us"><svg class="ic yes"><use href="#i-check"/></svg><span class="sr-only">Yes</span></td><td><svg class="ic no"><use href="#i-x"/></svg><span class="sr-only">No</span></td><td><svg class="ic no"><use href="#i-x"/></svg><span class="sr-only">No</span></td></tr>
+            <tr><th scope="row">Live job tracking for the customer</th><td class="cmp__us"><svg class="ic yes"><use href="#i-check"/></svg><span class="sr-only">Yes</span></td><td><svg class="ic no"><use href="#i-x"/></svg><span class="sr-only">No</span></td><td>Partial</td></tr>
+            <tr><th scope="row">Photo-based extra-work approval</th><td class="cmp__us"><svg class="ic yes"><use href="#i-check"/></svg><span class="sr-only">Yes</span></td><td><svg class="ic no"><use href="#i-x"/></svg><span class="sr-only">No</span></td><td><svg class="ic no"><use href="#i-x"/></svg><span class="sr-only">No</span></td></tr>
+            <tr><th scope="row">Live floor board for managers</th><td class="cmp__us"><svg class="ic yes"><use href="#i-check"/></svg><span class="sr-only">Yes</span></td><td><svg class="ic no"><use href="#i-x"/></svg><span class="sr-only">No</span></td><td><svg class="ic no"><use href="#i-x"/></svg><span class="sr-only">No</span></td></tr>
+            <tr><th scope="row">Sinhala, Tamil and English</th><td class="cmp__us"><svg class="ic yes"><use href="#i-check"/></svg><span class="sr-only">Yes</span></td><td>Spoken only</td><td>Rarely</td></tr>
+            <tr><th scope="row">Works through power or internet cuts</th><td class="cmp__us">Offline staff app (V2)</td><td><svg class="ic yes"><use href="#i-check"/></svg><span class="sr-only">Yes</span></td><td><svg class="ic no"><use href="#i-x"/></svg><span class="sr-only">No</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 09 TEAM ============ -->
+  <section class="section" id="team" data-glow="quiet" aria-labelledby="team-title">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="eyebrow">Our team</p>
+        <h2 id="team-title">The five people <span class="grad">behind AutoFlow</span></h2>
+        <p class="lead">A university project team building a real-world product for Sri Lanka's service industry.</p>
+      </header>
+
+      <!-- TODO: replace names, roles, descriptions and add photos in assets/team/member-N.jpg -->
+      <div class="team-grid">
+        <article class="member reveal" data-tilt>
+          <div class="member__photo" aria-hidden="true"><svg class="member__avatar"><use href="#i-user"/></svg></div>
+          <h3>Team Member 1</h3><p class="member__role">Project Lead &amp; Product Owner</p>
+          <p>Defines the product vision, manages the roadmap and coordinates the team through every sprint.</p>
+          <div class="member__social" aria-label="Team Member 1 social links">
+            <a href="https://www.linkedin.com/" data-social="linkedin" target="_blank" rel="noopener noreferrer" aria-label="Team Member 1 on LinkedIn"><svg class="ic"><use href="#i-linkedin"/></svg></a>
+            <a href="https://github.com/" data-social="github" target="_blank" rel="noopener noreferrer" aria-label="Team Member 1 on GitHub"><svg class="ic"><use href="#i-github"/></svg></a>
+          </div>
+        </article>
+        <article class="member reveal" style="--d:.06s" data-tilt>
+          <div class="member__photo" aria-hidden="true"><svg class="member__avatar"><use href="#i-user"/></svg></div>
+          <h3>Team Member 2</h3><p class="member__role">UI/UX Designer</p>
+          <p>Designed the high-fidelity prototype and keeps the experience consistent across all four apps.</p>
+          <div class="member__social" aria-label="Team Member 2 social links">
+            <a href="https://www.linkedin.com/" data-social="linkedin" target="_blank" rel="noopener noreferrer" aria-label="Team Member 2 on LinkedIn"><svg class="ic"><use href="#i-linkedin"/></svg></a>
+            <a href="https://github.com/" data-social="github" target="_blank" rel="noopener noreferrer" aria-label="Team Member 2 on GitHub"><svg class="ic"><use href="#i-github"/></svg></a>
+          </div>
+        </article>
+        <article class="member reveal" style="--d:.12s" data-tilt>
+          <div class="member__photo" aria-hidden="true"><svg class="member__avatar"><use href="#i-user"/></svg></div>
+          <h3>Team Member 3</h3><p class="member__role">Frontend Developer</p>
+          <p>Builds the web dashboards and this landing page with a focus on speed and accessibility.</p>
+          <div class="member__social" aria-label="Team Member 3 social links">
+            <a href="https://www.linkedin.com/" data-social="linkedin" target="_blank" rel="noopener noreferrer" aria-label="Team Member 3 on LinkedIn"><svg class="ic"><use href="#i-linkedin"/></svg></a>
+            <a href="https://github.com/" data-social="github" target="_blank" rel="noopener noreferrer" aria-label="Team Member 3 on GitHub"><svg class="ic"><use href="#i-github"/></svg></a>
+          </div>
+        </article>
+        <article class="member reveal" style="--d:.18s" data-tilt>
+          <div class="member__photo" aria-hidden="true"><svg class="member__avatar"><use href="#i-user"/></svg></div>
+          <h3>Team Member 4</h3><p class="member__role">Backend Developer</p>
+          <p>Designs the multi-tenant API, database and the job workflow engine that powers every app.</p>
+          <div class="member__social" aria-label="Team Member 4 social links">
+            <a href="https://www.linkedin.com/" data-social="linkedin" target="_blank" rel="noopener noreferrer" aria-label="Team Member 4 on LinkedIn"><svg class="ic"><use href="#i-linkedin"/></svg></a>
+            <a href="https://github.com/" data-social="github" target="_blank" rel="noopener noreferrer" aria-label="Team Member 4 on GitHub"><svg class="ic"><use href="#i-github"/></svg></a>
+          </div>
+        </article>
+        <article class="member reveal" style="--d:.24s" data-tilt>
+          <div class="member__photo" aria-hidden="true"><svg class="member__avatar"><use href="#i-user"/></svg></div>
+          <h3>Team Member 5</h3><p class="member__role">QA &amp; Documentation</p>
+          <p>Tests every workflow, edge case and device, and maintains the project documentation.</p>
+          <div class="member__social" aria-label="Team Member 5 social links">
+            <a href="https://www.linkedin.com/" data-social="linkedin" target="_blank" rel="noopener noreferrer" aria-label="Team Member 5 on LinkedIn"><svg class="ic"><use href="#i-linkedin"/></svg></a>
+            <a href="https://github.com/" data-social="github" target="_blank" rel="noopener noreferrer" aria-label="Team Member 5 on GitHub"><svg class="ic"><use href="#i-github"/></svg></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10 CALL TO ACTION ============ -->
+  <section class="section cta" id="waitlist" data-glow="gold" aria-labelledby="cta-title">
+    <div class="container cta__inner">
+      <div class="cta__copy reveal">
+        <p class="eyebrow">Early access</p>
+        <h2 id="cta-title">Be first in line for <span class="grad">AutoFlow</span></h2>
+        <p class="lead">Join the waitlist to get early access, launch updates and a say in what we build next. Whether you drive, repair or run a service center &ndash; there is a place for you.</p>
+        <ul class="cta__points">
+          <li><svg class="ic"><use href="#i-check"/></svg>Early access to the pilot</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Help shape the roadmap</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>No spam &ndash; unsubscribe any time</li>
+        </ul>
+      </div>
+
+      <form class="form glass reveal" id="waitlist-form" novalidate data-endpoint="waitlist" style="--d:.1s">
+        <h3>Join the waitlist</h3>
+        <div class="field">
+          <label for="wl-name">Full name <span aria-hidden="true">*</span></label>
+          <input id="wl-name" name="name" type="text" autocomplete="name" required minlength="2" aria-describedby="wl-name-err">
+          <p class="field__err" id="wl-name-err" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="wl-email">Email <span aria-hidden="true">*</span></label>
+          <input id="wl-email" name="email" type="email" autocomplete="email" required aria-describedby="wl-email-err">
+          <p class="field__err" id="wl-email-err" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="wl-phone">Mobile (optional)</label>
+          <input id="wl-phone" name="phone" type="tel" autocomplete="tel" placeholder="+94 77 123 4567" aria-describedby="wl-phone-err">
+          <p class="field__err" id="wl-phone-err" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="wl-role">I am a&hellip; <span aria-hidden="true">*</span></label>
+          <select id="wl-role" name="role" required aria-describedby="wl-role-err">
+            <option value="">Select your role</option>
+            <option>Vehicle owner</option>
+            <option>Service center owner</option>
+            <option>Mechanic / technician</option>
+            <option>Other</option>
+          </select>
+          <p class="field__err" id="wl-role-err" role="alert"></p>
+        </div>
+        <div class="field field--check">
+          <input id="wl-consent" name="consent" type="checkbox" required aria-describedby="wl-consent-err">
+          <label for="wl-consent">I agree to be contacted about AutoFlow and accept the <a href="privacy.html">Privacy Policy</a>. <span aria-hidden="true">*</span></label>
+          <p class="field__err" id="wl-consent-err" role="alert"></p>
+        </div>
+        <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button type="submit" class="btn btn--primary btn--block"><span class="btn__label">Join the Waitlist</span><span class="btn__spin" aria-hidden="true"></span></button>
+        <p class="form__status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ 11 CONTACT ============ -->
+  <section class="section" id="contact" data-glow="gold" aria-labelledby="contact-title">
+    <div class="container contact">
+      <div class="contact__info reveal">
+        <p class="eyebrow">Contact</p>
+        <h2 id="contact-title">Talk to <span class="grad">our team</span></h2>
+        <p class="lead">Questions, feedback, or want a live walk-through? Choose a quick way to reach us.</p>
+        <ul class="contact__list">
+          <li><span class="card__icon"><svg class="ic"><use href="#i-mail"/></svg></span><div><small>Official project email</small><a href="mailto:hello@autoflow.lk" data-email>hello@autoflow.lk</a></div></li>
+          <li><span class="card__icon"><svg class="ic"><use href="#i-pin"/></svg></span><div><small>Based in</small><span>Sri Lanka</span></div></li>
+        </ul>
+        <div class="social" aria-label="Social media">
+          <a href="https://www.facebook.com/" data-social="facebook" target="_blank" rel="noopener noreferrer" aria-label="AutoFlow on Facebook"><svg class="ic"><use href="#i-facebook"/></svg></a>
+          <a href="https://www.instagram.com/" data-social="instagram" target="_blank" rel="noopener noreferrer" aria-label="AutoFlow on Instagram"><svg class="ic"><use href="#i-instagram"/></svg></a>
+          <a href="https://www.linkedin.com/" data-social="linkedin" target="_blank" rel="noopener noreferrer" aria-label="AutoFlow on LinkedIn"><svg class="ic"><use href="#i-linkedin"/></svg></a>
+          <a href="https://www.youtube.com/" data-social="youtube" target="_blank" rel="noopener noreferrer" aria-label="AutoFlow on YouTube"><svg class="ic"><use href="#i-youtube"/></svg></a>
+          <a href="https://github.com/" data-social="github" target="_blank" rel="noopener noreferrer" aria-label="AutoFlow on GitHub"><svg class="ic"><use href="#i-github"/></svg></a>
+        </div>
+      </div>
+
+      <div class="quick-actions reveal" role="group" aria-label="Quick contact actions">
+        <a class="quick-action" href="https://wa.me/94770000000" data-whatsapp target="_blank" rel="noopener noreferrer">
+          <span class="card__icon"><svg class="ic"><use href="#i-phone"/></svg></span>
+          <span><b>Chat on WhatsApp</b><small>One-click chat with our team</small></span>
+          <svg class="ic quick-action__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+        <button class="quick-action quick-action--copy" type="button" data-copy-email>
+          <span class="card__icon"><svg class="ic"><use href="#i-mail"/></svg></span>
+          <span><b>Copy our email</b><small data-copy-email-value>hello@autoflow.lk</small></span>
+          <svg class="ic quick-action__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </button>
+        <a class="quick-action" href="mailto:hello@autoflow.lk?subject=Book%20a%20live%20demo" data-demo-email>
+          <span class="card__icon"><svg class="ic"><use href="#i-calendar"/></svg></span>
+          <span><b>Book a Live Demo</b><small>See AutoFlow in action</small></span>
+          <svg class="ic quick-action__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+        <p class="copy-toast" role="status" aria-live="polite" hidden></p>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ============ 12 FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a href="#home" class="brand"><img src="assets/img/logo-icon-128.png" alt="AutoFlow logo" width="44" height="44"><span class="brand__name">Auto<b>Flow</b></span></a>
+        <p>The smart service center platform for Sri Lanka &ndash; booking, live tracking and a workflow engine in one place.</p>
+        <div class="social">
+          <a href="https://www.facebook.com/" data-social="facebook" target="_blank" rel="noopener noreferrer" aria-label="AutoFlow on Facebook"><svg class="ic"><use href="#i-facebook"/></svg></a>
+          <a href="https://www.instagram.com/" data-social="instagram" target="_blank" rel="noopener noreferrer" aria-label="AutoFlow on Instagram"><svg class="ic"><use href="#i-instagram"/></svg></a>
+          <a href="https://www.linkedin.com/" data-social="linkedin" target="_blank" rel="noopener noreferrer" aria-label="AutoFlow on LinkedIn"><svg class="ic"><use href="#i-linkedin"/></svg></a>
+          <a href="https://www.youtube.com/" data-social="youtube" target="_blank" rel="noopener noreferrer" aria-label="AutoFlow on YouTube"><svg class="ic"><use href="#i-youtube"/></svg></a>
+          <a href="https://github.com/" data-social="github" target="_blank" rel="noopener noreferrer" aria-label="AutoFlow on GitHub"><svg class="ic"><use href="#i-github"/></svg></a>
+        </div>
+      </div>
+      <nav aria-label="Footer">
+        <h4>Quick links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#features">Features</a></li><li><a href="#how-it-works">How It Works</a></li><li><a href="#showcase">Prototype</a></li><li><a href="#team">Our Team</a></li><li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@autoflow.lk" data-email>hello@autoflow.lk</a></li>
+          <li><a href="tel:+94770000000" data-phone>+94 77 000 0000</a></li>
+          <li>Sri Lanka</li>
+          <li><a href="#waitlist">Join the waitlist</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <p>&copy; <span id="year">2026</span> AutoFlow. A university group project. All rights reserved.</p>
+      <p><a href="privacy.html">Privacy Policy</a></p>
+    </div>
+  </footer>
+
+  <button class="to-top" aria-label="Back to top" hidden><svg class="ic"><use href="#i-arrow"/></svg></button>
+
+  <script src="js/config.js"></script>
+  <script src="js/scene3d.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
