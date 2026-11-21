@@ -4,7 +4,7 @@ Static, dependency-free landing page (HTML + CSS + vanilla JS) with a custom
 canvas-based 3D engine in the logo's crimson / gold / black theme.
 
 ```
-index.html            main page (12 sections)
+
 privacy.html          privacy policy (linked from forms + footer)
 404.html              not-found page
 css/styles.css        all styles (design tokens at the top)
